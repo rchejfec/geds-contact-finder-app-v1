@@ -69,16 +69,14 @@ st.title("🔎 Government of Canada Contact Finder")
 st.markdown("""
 <style>
     .main-text {
-        font-size: 13px;
-        line-height: 1.4;
+        font-size: 14px;
+        line-height: 1.5;
     }
     .st-emotion-cache-16idsys p {
-        font-size: 13px;
-        line-height: 1.4;
+        font-size: 14px;
+        line-height: 1.5;
     }
     h3 {
-        border-bottom: 2px solid #F0F2F6;
-        padding-bottom: 3px;
         margin-top: 15px;
     }
 </style>
@@ -100,7 +98,7 @@ This application allows you to find specific contacts within the Government of C
 * **TeamParent:** The name of the division or branch that the person's immediate team belongs to. This provides organizational context.
 * **Team:** The name of the person's immediate team or unit.
 * **Email:** The contact's email address.
-* **IsActing:** A `TRUE`/`FALSE` flag indicating if the person is in an "acting" capacity.
+* **IsActing:** A 0 or 1 flag indicating if the person is in an "acting" capacity (1=acting).
 * **BranchPath:** (ONLY IN EXCEL) Full hierarchy of team, separated by '/'. 
 
 *The downloaded Excel file also includes French titles and the full department path for your reference.*
