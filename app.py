@@ -69,11 +69,11 @@ st.title("🔎 Government of Canada Contact Finder")
 st.markdown("""
 <style>
     .main-text {
-        font-size: 12px;
+        font-size: 13px;
         line-height: 1.4;
     }
     .st-emotion-cache-16idsys p {
-        font-size: 12px;
+        font-size: 13px;
         line-height: 1.4;
     }
     h3 {
@@ -85,7 +85,6 @@ st.markdown("""
 
 <div class="main-text">
 This application allows you to find specific contacts within the Government of Canada by applying a series of filters. The results will update in real-time as you make selections.
-</div>
 
 ### How to Use This Tool
 1.  **Start with the Filters:** Use the filters in the sidebar on the left to narrow down your search.
@@ -103,8 +102,9 @@ This application allows you to find specific contacts within the Government of C
 * **Email:** The contact's email address.
 * **IsActing:** A `TRUE`/`FALSE` flag indicating if the person is in an "acting" capacity.
 * **BranchPath:** (ONLY IN EXCEL) Full hierarchy of team, separated by '/'. 
----
+
 *The downloaded Excel file also includes French titles and the full department path for your reference.*
+</div>
 """, unsafe_allow_html=True)
 
 st.sidebar.header("Filter Contacts")
