@@ -69,17 +69,17 @@ st.title("🔎 Government of Canada Contact Finder")
 st.markdown("""
 <style>
     .main-text {
-        font-size: 16px;
-        line-height: 1.6;
+        font-size: 12px;
+        line-height: 1.4;
     }
     .st-emotion-cache-16idsys p {
-        font-size: 16px;
-        line-height: 1.6;
+        font-size: 12px;
+        line-height: 1.4;
     }
     h3 {
         border-bottom: 2px solid #F0F2F6;
-        padding-bottom: 5px;
-        margin-top: 20px;
+        padding-bottom: 3px;
+        margin-top: 15px;
     }
 </style>
 
@@ -89,8 +89,8 @@ This application allows you to find specific contacts within the Government of C
 
 ### How to Use This Tool
 1.  **Start with the Filters:** Use the filters in the sidebar on the left to narrow down your search.
-2.  **Select a Department:** Begin by choosing one or more top-level departments. You can type in the box to search by name or acronym.
-3.  **Refine by Role:** Once you've selected a department, the "Role" filter will update to show only the job roles available within your selection. You can further refine your search here.
+2.  **Select a Department:** Begin by choosing one or more top-level departments. You can type in the box to search by name or acronym (CASE SENSITIVE).
+3.  **Refine by Role:** Once you've selected a department, the "Role" filter will update to show only the job roles available within your selection. These are extracted based on some broad rules. The original input from the dept. is shown in the table and included in the export file.
 4.  **Filter by Team (Optional):** You can use the final filters to either include **only** specific teams or to **hide** specific teams from your results.
 5.  **Download Your List:** Once you have a filtered list you are happy with, use the download button to get a clean Excel file of your results.
 
@@ -102,7 +102,7 @@ This application allows you to find specific contacts within the Government of C
 * **Team:** The name of the person's immediate team or unit.
 * **Email:** The contact's email address.
 * **IsActing:** A `TRUE`/`FALSE` flag indicating if the person is in an "acting" capacity.
-
+* **BranchPath:** (ONLY IN EXCEL) Full hierarchy of team, separated by '/'. 
 ---
 *The downloaded Excel file also includes French titles and the full department path for your reference.*
 """, unsafe_allow_html=True)
