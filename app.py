@@ -66,25 +66,46 @@ df_master = load_and_process_data('master_contacts.db')
 
 st.title("🔎 Government of Canada Contact Finder")
 ### How to Use This Tool
-st.markdown("This application allows you to find specific contacts within the Government of Canada by applying a series of filters. The table will update in real-time as you make selections. \
- \
-1.  **Start with the Filters:** Use the filters in the sidebar on the left to narrow down your search. \
-2.  **Select a Department:** Begin by choosing one or more top-level departments. You can type in the box to search by name or acronym. \
-3.  **Refine by Role:** Once you've selected a department, the \"Role\" filter will update to show only the job roles available within your selection. You can further refine your search here. \
-4.  **Filter by Team (Optional):** You can use the final filters to either include *only* specific teams or to *exclude* specific teams from your results. \
-5.  **Download Your List:** Once you have a filtered list you are happy with, use the download button to get a clean Excel file of your results. \
- \
-### Understanding the Columns \
- \
-* **FullName:** The individual's full name. \
-* **TitleEN:** The full, original English job title. \
-* **TopLevelDepartmentEN:** The highest-level department or agency (e.g., \"Finance Canada\"). \
-* **TeamParent:** The name of the division or branch that the person's immediate team belongs to. This provides organizational context. \
-* **Team:** The name of the person's immediate team or unit. \
-* **Email:** The contact's email address. \
-* **IsActing:** A TRUE/FALSE flag indicating if the person is in an \"acting\" capacity. \
-\
-The downloaded Excel file also includes `TitleFR` (French Title) and \`DepartmentPathEN\` (the full, unabridged departmental hierarchy).")
+st.markdown("""
+<style>
+    .main-text {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    .st-emotion-cache-16idsys p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    h3 {
+        border-bottom: 2px solid #F0F2F6;
+        padding-bottom: 5px;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="main-text">
+This application allows you to find specific contacts within the Government of Canada by applying a series of filters. The results will update in real-time as you make selections.
+</div>
+
+### How to Use This Tool
+1.  **Start with the Filters:** Use the filters in the sidebar on the left to narrow down your search.
+2.  **Select a Department:** Begin by choosing one or more top-level departments. You can type in the box to search by name or acronym.
+3.  **Refine by Role:** Once you've selected a department, the "Role" filter will update to show only the job roles available within your selection. You can further refine your search here.
+4.  **Filter by Team (Optional):** You can use the final filters to either include **only** specific teams or to **hide** specific teams from your results.
+5.  **Download Your List:** Once you have a filtered list you are happy with, use the download button to get a clean Excel file of your results.
+
+### Understanding the Columns
+* **FullName:** The individual's full name.
+* **TitleEN:** The full, original English job title.
+* **TopLevelDepartmentEN:** The highest-level department or agency (e.g., "Finance Canada").
+* **TeamParent:** The name of the division or branch that the person's immediate team belongs to. This provides organizational context.
+* **Team:** The name of the person's immediate team or unit.
+* **Email:** The contact's email address.
+* **IsActing:** A `TRUE`/`FALSE` flag indicating if the person is in an "acting" capacity.
+
+---
+*The downloaded Excel file also includes French titles and the full department path for your reference.*
+""", unsafe_allow_html=True)
 
 st.sidebar.header("Filter Contacts")
 
