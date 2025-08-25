@@ -41,7 +41,7 @@ def load_and_process_data(db_path):
         "assistant deputy minister": "03 - Assistant Deputy Minister",
         "deputy minister": "02 - Deputy Minister",
         "minister": "01 - Minister",
-        "chief": "05 - Chief / President / Commissioner",
+        "chief/commissioner": "05 - Chief / President / Commissioner",
         "vice-president": "06 - Vice-President",
         "secretary": "16 - Secretary",
         "governor": "15 - Governor",
