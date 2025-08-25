@@ -9,6 +9,7 @@ st.set_page_config(page_title="GEDS Contact Finder", page_icon="🔎", layout="w
 
 # --- Helper Functions ---
 def create_acronym(name):
+    """Creates an acronym from a department name, ignoring common lowercase words."""
     if not isinstance(name, str): return ""
     stop_words = {'of', 'and', 'the', 'for', 'et', 'des', 'la', 'le'}
     name_no_parens = re.sub(r'\(.*\)', '', name).strip()
@@ -32,28 +33,28 @@ def load_and_process_data(db_path):
     df = pd.read_sql_query("SELECT * FROM contacts", conn)
     conn.close()
 
-    # --- NEW: Define the role hierarchy directly in the app ---
+    # Define the role hierarchy directly in the app for sorting and display
     role_hierarchy = {
-        "minister": "01 - Minister",
-        "deputy minister": "02 - Deputy Minister",
-        "assistant deputy minister": "03 - Associate/Assistant Deputy Minister",
-        "associate assistant deputy minister": "04 - Associate Assistant Deputy Minister",
+        "executive assistant": "17 - Executive Assistant",
         "chief of staff": "04 - Chief of Staff",
-        "chief/commissioner": "05 - Chief / President / Commissioner",
+        "associate assistant deputy minister": "03 - Associate Assistant Deputy Minister",
+        "assistant deputy minister": "03 - Assistant Deputy Minister",
+        "deputy minister": "02 - Deputy Minister",
+        "minister": "01 - Minister",
+        "chief": "05 - Chief / President / Commissioner",
         "vice-president": "06 - Vice-President",
+        "secretary": "16 - Secretary",
+        "governor": "15 - Governor",
         "director general": "07 - Director General",
         "executive director": "08 - Executive Director",
         "director": "09 - Director",
+        "specialist/lead": "14 - Specialist / Lead",
         "manager": "10 - Manager",
         "principal/senior advisor": "11 - Senior Advisor",
-        "senior policy professional": "12 - Senior Analyst",
-        "scientist/researcher": "13 - Scientist / Researcher",
-        "specialist/lead": "14 - Specialist / Lead",
-        "governor": "15 - Governor",
-        "secretary": "16 - Secretary",
-        "executive assistant": "17 - Executive Assistant",
+        "senior policy professional": "12 - Senior Policy Professional",
+        "scientist/researcher": "13 - Scientist / Researcher"
     }
-      
+    
     df['RoleDisplayName'] = df['CanonicalRole'].map(role_hierarchy).fillna(df['CanonicalRole'])
     df['Team'] = df['DepartmentPathEN'].apply(lambda path: path.split(' / ')[-1] if isinstance(path, str) and ' / ' in path else path)
     df['TeamParent'] = df['DepartmentPathEN'].apply(lambda path: path.split(' / ')[-2] if isinstance(path, str) and len(path.split(' / ')) > 1 else None)
@@ -69,6 +70,7 @@ st.sidebar.header("Filter Contacts")
 
 # --- Interactive Filters ---
 departments = sorted(df_master['SearchableDepartment'].dropna().unique())
+# Sort the roles based on our new display name
 roles_for_display = sorted(df_master['RoleDisplayName'].dropna().unique())
 
 selected_searchable_departments = st.sidebar.multiselect('1. Select Department(s)', options=departments)
@@ -103,7 +105,7 @@ if selected_searchable_departments or selected_roles_display:
     st.dataframe(df_filtered[display_cols])
 
     if not df_filtered.empty:
-        download_cols = ['FullName', 'TitleEN', 'TopLevelDepartmentEN', 'TeamParent', 'Team', 'Email', 'IsActing', 'DepartmentPathEN']
+        download_cols = ['FullName', 'TitleEN', 'TitleFR', 'TopLevelDepartmentEN', 'TeamParent', 'Team', 'Email', 'IsActing', 'DepartmentPathEN']
         final_download_df = df_filtered[[col for col in download_cols if col in df_filtered.columns]]
         excel_data = to_excel(final_download_df)
         
@@ -116,3 +118,4 @@ if selected_searchable_departments or selected_roles_display:
 else:
     # This is the default message shown before any filters are applied.
     st.info("ℹ️ Please select a Department or Role in the sidebar to begin your search.")
+
